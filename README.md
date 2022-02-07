@@ -5,6 +5,8 @@ Render function to display state of the game either player 1, player 2 or to sta
 reset button to work
 init function
 congratulations you completed this round in time(00:00)
+
+ 
 - Display an empty tic-tac-toe board when the page is initially displayed.
 - A player can click on the nine cells to make a move.
 - Every click will alternate between marking an `X` and `O`.
@@ -34,12 +36,12 @@ congratulations you completed this round in time(00:00)
 
 
 
-// 1) Define the required variables used to track the state of the game:
-  // None of these variables will need to hold a value when they are defined
+<!-- // 1) Define the required variables used to track the state of the game: -->
+  <!-- // None of these variables will need to hold a value when they are defined -->
 
-	// 1.1) Use an array to represent the squares on the board.    
+	<!-- // 1.1) Use an array to represent the squares on the board.     -->
 
-	// 1.2) Use a turn variable to track whose turn it is.
+	<!-- // 1.2) Use a turn variable to track whose turn it is. -->
 
 	// 1.3) Use a winner variable to represent three different game states:
 	  // a player that won
@@ -90,9 +92,9 @@ congratulations you completed this round in time(00:00)
 
 // 4) Define the required constants:
 
-	// 4.1) Define the 8 possible winning combinations as an array of arrays.
-	  // Each array will contain three indexes of the board that make a winner if they hold the same player value. 
-		// If you are having trouble with this step, feel free to check out the winningCombos array in the solution code. 
+	<!-- // 4.1) Define the 8 possible winning combinations as an array of arrays. -->
+	  <!-- // Each array will contain three indexes of the board that make a winner if they hold the same player value. 
+		// If you are having trouble with this step, feel free to check out the winningCombos array in the solution code.  -->
 
 
 // 5) Next, the app should wait for the user to click a square and call a handleClick function
