@@ -5,18 +5,18 @@ const winningCombos = [
   [6, 7, 8],
   [0, 3, 6],
   [1, 4, 7],
-  [2, 5, 6],
+  [2, 5, 8],
   [0, 4, 8],
   [2, 4, 6],
 ];
-
+console.log(winningCombos)
 
 
 
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let winner, playerTurn, squares, turnCount
+let winner, playerTurn, squares, turnCount, isWinner
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -48,61 +48,71 @@ function init() {
 
   playerTurn = 1
   winner = null;
-  turnCount = 0
-  
-  
-  console.log(squares)
-  console.log('init invoked') 
+  // turnCount = 0
+  // console.log(squares)
+  // console.log('init invoked') 
   render()
 }
 
 
 
 function handleClick (event) {
-  const id = event.target.id.replace('sq','')
-  if (squares[id] === null){
+  const id = parseInt(event.target.id.replace('sq',''))
+  if (squares[id] === null ){
     squares[id] = playerTurn
-    playerTurn *= 1
-
-    console.log(squares)
-    render()
-    getWinner()
-  console.log(event.target.id)
+    playerTurn *= -1
+    
+  // console.log(event.target.id)
+  render()
+  winner = getWinner()
   }
-  
-  for (let i = 0; i < squares.length; i++){
-    if(squares[i] === 1){
-      boardSquare.textContent = 'X'
-    } else if (squares[i] === -1){
-      boardSquare.textContent = 'O'
-    } else {
-      boardSquare.textContent = ""
-    }
-  }render()
-}
+  }
+
 
 
 
 function getWinner(){
-
-  console.log(winner)
+  for (let i = 0; i < winningCombos.length; i++){
+    const a = winningCombos[i][0]
+    const b = winningCombos[i][1]
+    const c = winningCombos[i][2]
+      if (squares[a] + squares[b] + squares[c] === 3){
+        // console.log('X wins')
+          message.textContent = 'YAY X wins';
+          winner = 'X'
+        } else if (squares[a] + squares[b] + squares[c] === -3){
+          // console.log('O wins')
+          message.textContent = 'YAY O wins';
+          winner = 'O'
+      }
+      if (turnCount === 9 && winner === null){
+        console.log('Tie')
+        message.textContent = "OH NO it's a tie!";
+        winner = 'TIE'
+      render() 
+      
+    }
+  }
 }
 
 
+function render(){
+  for (let i = 0; i < squares.length; i++){
+    if(squares[i] === 1){
+      boardSquare[i].textContent = 'X'
+    } else if (squares[i] === -1){
+      boardSquare[i].textContent = 'O'
+    } else {
+      boardSquare[i].textContent = ""
+    }
+    }
 
-
-
-
-  function render(){
-  
-  
   if (playerTurn === 1){
     message = "It's X's Turn!" 
   } else if (playerTurn === -1){
     message = "It's O's Turn!"
   }
-
-    gameStat.textContent = message
+  gameStat.textContent = message
   console.log('render invoked')
-  }
-  
+}
+init()
