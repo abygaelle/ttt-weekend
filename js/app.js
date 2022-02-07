@@ -16,7 +16,7 @@ const winningCombos = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let winner, playerTurn, board, turnCount
+let winner, playerTurn, squares, turnCount
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -44,13 +44,14 @@ resetBtn.addEventListener('click', init)
 init()
 
 function init() {
-  board =[null, null, null, null, null, null, null, null, null]
-  playerTurn = 1
-  turnCount += 1
+  squares =[null, null, null, null, null, null, null, null, null]
 
+  playerTurn = 1
   winner = null;
+  turnCount = 0
   
-  console.log(board)
+  
+  console.log(squares)
   console.log('init invoked') 
   render()
 }
@@ -58,11 +59,26 @@ function init() {
 
 
 function handleClick (event) {
+  const id = event.target.id.replace('sq','')
+  if (squares[id] === null){
+    squares[id] = playerTurn
+    playerTurn *= 1
 
-
-
-
+    console.log(squares)
+    render()
+    getWinner()
   console.log(event.target.id)
+  }
+  
+  for (let i = 0; i < squares.length; i++){
+    if(squares[i] === 1){
+      boardSquare.textContent = 'X'
+    } else if (squares[i] === -1){
+      boardSquare.textContent = 'O'
+    } else {
+      boardSquare.textContent = ""
+    }
+  }render()
 }
 
 
@@ -74,14 +90,19 @@ function getWinner(){
 
 
 
-function render(){
+
+
+
+  function render(){
+  
+  
   if (playerTurn === 1){
     message = "It's X's Turn!" 
   } else if (playerTurn === -1){
     message = "It's O's Turn!"
   }
 
-
-  gameStat.textContent = message
+    gameStat.textContent = message
   console.log('render invoked')
   }
+  
