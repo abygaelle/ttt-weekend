@@ -16,7 +16,7 @@ console.log(winningCombos)
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let winner, playerTurn, squares, turnCount, isWinner
+let winner, playerTurn, squares, turnCount, isWinner, message
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -52,20 +52,22 @@ function init() {
   // console.log(squares)
   // console.log('init invoked') 
   render()
+  
 }
 
 
 
 function handleClick (event) {
+  getWinner()
   const id = event.target.id.replace('sq','')
   if (squares[id] === null){
     squares[id] = playerTurn
     playerTurn *= -1
     turnCount += 1
     
-  console.log(event.target.id)
+  // console.log(event.target.id)
   render()
-  winner = getWinner()
+  
   }
   }
 
@@ -80,19 +82,20 @@ function getWinner(){
     const c = winningCombos[i][2]
       if (squares[a] + squares[b] + squares[c] === 3){
         console.log('X wins')
-          message.textContent = 'YAY X wins';
-          
+          message = 'YAY X wins';
+          // winner = 'X'
         } else if (squares[a] + squares[b] + squares[c] === -3){
           console.log('O wins')
-          message.textContent = 'YAY O wins';
-          
+          message = 'YAY O wins';
+          // winner = 'O'
+          // console.log(message)
       }
       if (turnCount === 9 && winner === null){
         console.log('Tie')
-        message.textContent = "OH NO it's a tie!";
+          message = "OH NO it's a tie!";
         
-      render() 
-      
+      // gameStat.textContent = message
+      render()
     }
   }
 }
@@ -108,13 +111,11 @@ function render(){
       boardSquare[i].textContent = ""
     }
     }
-
-  if (playerTurn === 1){
-    message = "It's X's Turn!" 
-  } else if (playerTurn === -1){
-    message = "It's O's Turn!"
-  }
+  if (playerTurn === 1 && !winner){
+      message = "It's X's Turn!" 
+    } else if (playerTurn === -1 && !winner){
+      message = "It's O's Turn!"
+    }
   gameStat.textContent = message
-  console.log('render invoked')
+  // console.log('render invoked')
 }
-init()
