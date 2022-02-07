@@ -30,7 +30,7 @@ congratulations you completed this round in time(00:00)
 
 4) Define the required constants
 
-5) Handle a player clicking a square
+<!-- 5) Handle a player clicking a square -->
 
 6) Handle a player clicking the replay button
 
@@ -59,10 +59,10 @@ congratulations you completed this round in time(00:00)
 
 // 3) Upon loading, the app should:
 
-	// 3.1) Call an initialize function
+	<!-- // 3.1) Call an initialize function -->
 
-	// 3.2) That initialize function should initialize the state variables:
-	  // 3.2.1) Initialize the board array to 9 nulls to represent empty squares. 
+	<!-- // 3.2) That initialize function should initialize the state variables:
+	  // 3.2.1) Initialize the board array to 9 nulls to represent empty squares.  -->
 	    // The 9 elements will "map" to each square.
 	    // Index 0 represents the top-left square.
 	    // Index 1 represents the top-middle square.
