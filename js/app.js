@@ -51,14 +51,16 @@ function init() {
   turnCount = 0
   // console.log(squares)
   // console.log('init invoked') 
+  getWinner()
   render()
+  
   
 }
 
 
 
 function handleClick (event) {
-  getWinner()
+  
   const id = event.target.id.replace('sq','')
   if (squares[id] === null){
     squares[id] = playerTurn
@@ -66,6 +68,7 @@ function handleClick (event) {
     turnCount += 1
     
   // console.log(event.target.id)
+  getWinner()
   render()
   
   }
@@ -81,21 +84,17 @@ function getWinner(){
     const b = winningCombos[i][1]
     const c = winningCombos[i][2]
       if (squares[a] + squares[b] + squares[c] === 3){
-        console.log('X wins')
           message = 'YAY X wins';
-          // winner = 'X'
+
         } else if (squares[a] + squares[b] + squares[c] === -3){
-          console.log('O wins')
           message = 'YAY O wins';
-          // winner = 'O'
-          // console.log(message)
+
       }
       if (turnCount === 9 && winner === null){
-        console.log('Tie')
           message = "OH NO it's a tie!";
         
-      // gameStat.textContent = message
-      render()
+
+      
     }
   }
 }
@@ -116,6 +115,7 @@ function render(){
     } else if (playerTurn === -1 && !winner){
       message = "It's O's Turn!"
     }
+    getWinner()
   gameStat.textContent = message
-  // console.log('render invoked')
+
 }
